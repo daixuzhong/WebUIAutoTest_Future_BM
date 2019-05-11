@@ -24,7 +24,7 @@ public class ExpenseBXPage extends BasePage {
     private WebElement expenseTitle;
 
     //费用报销单-事由
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/form/div/div/div[2]/div[9]/div/textarea")
+    @FindBy(name = "subject")
     private WebElement incident;
 
     //付款方式查询按钮

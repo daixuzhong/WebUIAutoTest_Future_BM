@@ -31,7 +31,10 @@ public class HomeAction {
         return hp.assertElementExist(hp.getLogOff());
     }
 
-    //点击系统管理
+    //点击门户管理
+    public void clickBMAdmin() {
+        hp.click(hp.getBmAdmin());
+    }
 
 
 }

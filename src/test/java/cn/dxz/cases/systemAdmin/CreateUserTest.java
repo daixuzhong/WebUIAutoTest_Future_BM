@@ -3,6 +3,9 @@ package cn.dxz.cases.systemAdmin;
 import cn.dxz.base.CaseBase;
 import cn.dxz.business.HomeBusiness;
 import cn.dxz.business.LoginBusiness;
+import cn.dxz.business.bmAdmin.BMAdminBusiness;
+import cn.dxz.business.bmAdmin.UserListBusiness;
+import cn.dxz.utils.ProUtil;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
@@ -24,13 +27,22 @@ public class CreateUserTest extends CaseBase {
         LoginBusiness lb = new LoginBusiness(driver);
         driver.get("http://47.100.40.166:8020/ZT/Account/Login?ReturnUrl=%2fZT%2f");
         //登录
-        lb.login("admin","1",false);
+        ProUtil proUtil = new ProUtil();
+        String admin = proUtil.readFile("parameter.properties", "admin");
+        String password = proUtil.readFile("parameter.properties", "password");
+        lb.login(admin,password,false);
     }
 
     @Test(dependsOnMethods = {"loginAdmin"})
     public void sysAdmin() {
         HomeBusiness hb = new HomeBusiness(driver);
-        hb.createUser();
+        hb.enterBMAdmin();
+        BMAdminBusiness bmb = new BMAdminBusiness(driver);
+        bmb.enterUserList();
+        UserListBusiness ulb = new UserListBusiness(driver);
+        ulb.enterNewUser();
+
+
     }
 
     @AfterTest

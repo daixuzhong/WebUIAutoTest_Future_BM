@@ -24,7 +24,7 @@ public class newExpenseBXTest extends CaseBase {
 
     private static Logger logger = LoggerFactory.getLogger(newExpenseBXTest.class);
     //选择浏览器
-    private WebDriver driver = initDriver("ie");
+    private WebDriver driver = initDriver("chrome");
 
     @BeforeTest
     public void login() {

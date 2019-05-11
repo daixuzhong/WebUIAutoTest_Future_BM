@@ -20,7 +20,8 @@ import java.util.Set;
  */
 public class BasePage {
     private WebDriver driver;
-    private final int timeOut = 10;
+    //最大超时时间，单位：秒
+    private final int timeOut = 5;
 
     public BasePage(WebDriver driver){
         this.driver=driver;

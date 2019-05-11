@@ -12,7 +12,6 @@ import org.openqa.selenium.support.FindBy;
  * @date 2019/5/9
  */
 public class HomePage extends BasePage {
-    private WebDriver driver;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -31,9 +30,8 @@ public class HomePage extends BasePage {
     private WebElement allBudget_User;
 
     //上方导航栏-门户管理
-    @FindBy(xpath = "/html/body/header/div[2]/ul/li[3]/a")
-    private WebElement portalAdmin;
-
+    @FindBy(partialLinkText = "BMAdmin")
+    private WebElement bmAdmin;
 
     public WebElement getLogOff() {
         return logOff;
@@ -45,5 +43,9 @@ public class HomePage extends BasePage {
 
     public WebElement getAllBudget_User() {
         return allBudget_User;
+    }
+
+    public WebElement getBmAdmin() {
+        return bmAdmin;
     }
 }

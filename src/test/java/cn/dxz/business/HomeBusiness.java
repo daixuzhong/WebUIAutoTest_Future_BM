@@ -24,9 +24,16 @@ public class HomeBusiness {
     }
 
     /**
-     * 进入全面预算页
+     * 进入全面预算页（用户）
      */
     public void enterAllBudget() {
         ha.clickAllBudget();
+    }
+
+    /**
+     * 进入门户管理（后台）
+     */
+    public void enterBMAdmin() {
+        ha.clickBMAdmin();
     }
 }
