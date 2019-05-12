@@ -32,12 +32,12 @@ public class CreateUserTest extends CaseBase {
         UserListBusiness ulb = new UserListBusiness(driver);
 
         //创建用户参数
-        ProUtil proUtil = new ProUtil();
-        String name = proUtil.readFile("bmAdmin/createUser.properties", "name");
-        String code = proUtil.readFile("bmAdmin/createUser.properties", "code");
-        String department = proUtil.readFile("bmAdmin/createUser.properties", "department");
-        String enableDepartment = proUtil.readFile("bmAdmin/createUser.properties", "enableDepartment");
-        String company = proUtil.readFile("bmAdmin/createUser.properties", "company");
+        ProUtil proUtil = new ProUtil("bmAdmin/createUser.properties");
+        String name = proUtil.readFile("name");
+        String code = proUtil.readFile("code");
+        String department = proUtil.readFile("department");
+        String enableDepartment = proUtil.readFile( "enableDepartment");
+        String company = proUtil.readFile("company");
 
         User user = new User();
         user.setName(name);

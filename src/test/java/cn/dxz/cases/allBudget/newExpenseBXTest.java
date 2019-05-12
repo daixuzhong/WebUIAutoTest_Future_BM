@@ -31,9 +31,9 @@ public class newExpenseBXTest extends CaseBase {
         driver.get("http://47.100.40.166:8020/ZT/Account/Login?ReturnUrl=%2fZT%2f");
 
         //登录
-        ProUtil proUtil = new ProUtil();
-        String userName = proUtil.readFile("parameter.properties", "ceshi123456");
-        String password = proUtil.readFile("parameter.properties", "password");
+        ProUtil proUtil = new ProUtil("parameter.properties");
+        String userName = proUtil.readFile("ceshi123456");
+        String password = proUtil.readFile( "password");
 
         lb.login(userName,password,false);
     }
@@ -56,15 +56,15 @@ public class newExpenseBXTest extends CaseBase {
         try {
             //填写费用报销单
             ExpenseBX param = new ExpenseBX();
-            ProUtil proUtil = new ProUtil();
-            String title = proUtil.readFile("allBudget/expenseBX.properties", "title");
-            String incident = proUtil.readFile("allBudget/expenseBX.properties", "incident");
-            String amount = proUtil.readFile("allBudget/expenseBX.properties", "amount");
-            String payType = proUtil.readFile("allBudget/expenseBX.properties", "payType");
-            String payee = proUtil.readFile("allBudget/expenseBX.properties", "payee");
-            String budgetSheet = proUtil.readFile("allBudget/expenseBX.properties", "budgetSheet");
-            String budgetItem = proUtil.readFile("allBudget/expenseBX.properties", "budgetItem");
-            String costCenter = proUtil.readFile("allBudget/expenseBX.properties", "costCenter");
+            ProUtil proUtil = new ProUtil("allBudget/expenseBX.properties");
+            String title = proUtil.readFile("title");
+            String incident = proUtil.readFile( "incident");
+            String amount = proUtil.readFile("amount");
+            String payType = proUtil.readFile( "payType");
+            String payee = proUtil.readFile( "payee");
+            String budgetSheet = proUtil.readFile("budgetSheet");
+            String budgetItem = proUtil.readFile("budgetItem");
+            String costCenter = proUtil.readFile("costCenter");
 
             param.setTitle(title);
             param.setIncident(incident);

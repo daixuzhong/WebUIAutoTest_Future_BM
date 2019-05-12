@@ -19,20 +19,21 @@ public class ProUtil {
 
     private static String PATHROOT = "src/main/resources/";
 
-    public ProUtil() {
+    private String path;
 
+    public ProUtil(String filePath) {
+        this.path = PATHROOT + filePath;
     }
 
     /**
      * 读取文件
-     * @param filePath
      * @param key
      * @return
      */
-    public String readFile(String filePath, String key) {
+    public String readFile(String key) {
         Properties prop = new Properties();
         try {
-            FileInputStream fileInputStream = new FileInputStream(PATHROOT + filePath);
+            FileInputStream fileInputStream = new FileInputStream(path);
             //部署到tomcat时使用
 //            InputStream fileInputStream1 = this.getClass().getResourceAsStream(filePath);
             BufferedInputStream in = new BufferedInputStream(fileInputStream);
@@ -42,7 +43,7 @@ public class ProUtil {
             }
         } catch (FileNotFoundException e) {
             logger.error("读取文件失败");
-            logger.error("filePath=" + PATHROOT + filePath);
+            logger.error("filePath=" + path);
             e.printStackTrace();
         } catch (IOException e) {
             logger.error("读取文件失败");
@@ -52,7 +53,7 @@ public class ProUtil {
     }
 
     public static void main(String[] args) {
-        String userName = new ProUtil().readFile("parameter.properties", "title");
+        String userName = new ProUtil("parameter.properties").readFile( "title");
 
         System.out.println(userName);
     }
