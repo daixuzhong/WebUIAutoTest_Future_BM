@@ -23,7 +23,7 @@ public class BMAdminPage extends BasePage {
     //用户管理-用户列表
     @FindBys({
             @FindBy(id = "collapse2"),
-            @FindBy(linkText = "/ZT/BMAdmin#/view/User")
+            @FindBy(linkText = "用户列表")
     })
     private WebElement userList;
 

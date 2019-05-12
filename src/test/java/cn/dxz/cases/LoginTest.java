@@ -28,24 +28,24 @@ public class LoginTest extends CaseBase {
     }
 
 
-//    @Test(dependsOnMethods = {"getUrl"})
-//    @Parameters({"userName","password"})
-//    public void loginAdmin(String userName, String password) {
-//        LoginBusiness page = new LoginBusiness(driver);
-//        //登录
-//        page.login(userName,password,false);
-//    }
-
     @Test(dependsOnMethods = {"getUrl"})
-    public void loginAdmin() {
+    @Parameters({"userName","password"})
+    public void loginAdmin(String userName, String password) {
         LoginBusiness page = new LoginBusiness(driver);
-        //获取登录参数
-        ProUtil proUtil = new ProUtil();
-        String userName = proUtil.readFile("parameter.properties", "userName");
-        String password = proUtil.readFile("parameter.properties", "password");
         //登录
         page.login(userName,password,false);
     }
+
+//    @Test(dependsOnMethods = {"getUrl"})
+//    public void loginAdmin() {
+//        LoginBusiness page = new LoginBusiness(driver);
+//        //获取登录参数
+//        ProUtil proUtil = new ProUtil();
+//        String userName = proUtil.readFile("parameter.properties", "userName");
+//        String password = proUtil.readFile("parameter.properties", "password");
+//        //登录
+//        page.login(userName,password,false);
+//    }
 
     @AfterTest
     public void afterTest() {

@@ -5,7 +5,6 @@ import cn.dxz.business.AllBudgetBusiness;
 import cn.dxz.business.HomeBusiness;
 import cn.dxz.business.LoginBusiness;
 import cn.dxz.business.entities.ExpenseBX;
-import cn.dxz.business.forms.ExpenseBXBusiness;
 import cn.dxz.utils.ProUtil;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -55,20 +54,28 @@ public class newExpenseBXTest extends CaseBase {
         //点击预算执行-新建流程
         AllBudgetBusiness abb = new AllBudgetBusiness(driver);
         try {
-            abb.newExpenseBX();
             //填写费用报销单
-            ExpenseBXBusiness ebxb = new ExpenseBXBusiness(driver);
             ExpenseBX param = new ExpenseBX();
             ProUtil proUtil = new ProUtil();
-            String title = proUtil.readFile("parameter.properties", "title");
-            String incident = proUtil.readFile("parameter.properties", "incident");
-            String amount = proUtil.readFile("parameter.properties", "amount");
+            String title = proUtil.readFile("allBudget/expenseBX.properties", "title");
+            String incident = proUtil.readFile("allBudget/expenseBX.properties", "incident");
+            String amount = proUtil.readFile("allBudget/expenseBX.properties", "amount");
+            String payType = proUtil.readFile("allBudget/expenseBX.properties", "payType");
+            String payee = proUtil.readFile("allBudget/expenseBX.properties", "payee");
+            String budgetSheet = proUtil.readFile("allBudget/expenseBX.properties", "budgetSheet");
+            String budgetItem = proUtil.readFile("allBudget/expenseBX.properties", "budgetItem");
+            String costCenter = proUtil.readFile("allBudget/expenseBX.properties", "costCenter");
 
             param.setTitle(title);
             param.setIncident(incident);
             param.setAmount(amount);
+            param.setPayType(payType);
+            param.setPayee(payee);
+            param.setBudgetSheet(budgetSheet);
+            param.setBudgetItem(budgetItem);
+            param.setCostCenter(costCenter);
 
-            ebxb.wirteExpenseBX(param);
+            abb.newExpenseBX(param);
 
             Thread.sleep(5000);
         } catch (InterruptedException e) {

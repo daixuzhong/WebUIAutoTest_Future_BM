@@ -42,6 +42,7 @@ public class ProUtil {
             }
         } catch (FileNotFoundException e) {
             logger.error("读取文件失败");
+            logger.error("filePath=" + PATHROOT + filePath);
             e.printStackTrace();
         } catch (IOException e) {
             logger.error("读取文件失败");

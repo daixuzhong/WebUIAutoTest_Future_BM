@@ -37,4 +37,9 @@ public class UserListAction {
     public void clickFirstEditBtn() {
         ulp.click(ulp.getEditBtn1());
     }
+
+
+    public void wirteUserMes() {
+
+    }
 }

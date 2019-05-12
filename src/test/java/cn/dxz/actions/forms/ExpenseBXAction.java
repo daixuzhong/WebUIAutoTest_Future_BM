@@ -36,18 +36,16 @@ public class ExpenseBXAction {
     }
 
     /**
-     * 点击付款方式选择框
+     * 点击付款方式选择框输入付款方式并选择
+     * @param key
      */
-    public void clickPayType() {
+    public void choosePayType(String key) {
+        //点击搜索框
         ebx.click(ebx.getChoosePayType());
-    }
-
-    /**
-     * 点击付款方式的第一个选项
-     */
-    public void clickFirstType() {
+        ebx.sendKey(ebx.getSearchInput(), key);
         ebx.click(ebx.getFirstType());
     }
+
 
     /**
      * 点击收款人
@@ -57,11 +55,15 @@ public class ExpenseBXAction {
     }
 
     /**
-     * 选择第一个收款人
+     * 选择收款人
+     * @param payee
      */
-    public void clickFirstPayee() {
-        ebx.click(ebx.getSecPayee());
+    public void choosePayee(String payee) {
+        clickPayee();
+        ebx.sendKey(ebx.getSearchInput(), payee);
+        ebx.click(ebx.getFirstPayee());
     }
+
 
     /**
      * 点击添加明细
@@ -71,32 +73,35 @@ public class ExpenseBXAction {
     }
 
     /**
-     * 点击预算表选择框
+     * 选择预算表
+     * @param budgetSheet
      */
-    public void clickBudgetSheet() {
+    public void chooseBudgetSheet(String budgetSheet) {
         ebx.click(ebx.getBudgetSheet());
+        ebx.sendKey(ebx.getDetailInput(), budgetSheet);
+        ebx.click(ebx.getFirstRes());
     }
 
     /**
-     * 明细选择框下拉第一项
+     * 选择预算项
+     * @param budgetItem
      */
-    public void clickFirstChoice() {
-        ebx.click(ebx.getFirstChoice());
-    }
-
-    /**
-     * 点击预算项选择框
-     */
-    public void clickBudgetItem() {
+    public void chooseBudgetItem(String budgetItem) {
         ebx.click(ebx.getBudgetItem());
+        ebx.sendKey(ebx.getDetailInput(), budgetItem);
+        ebx.click(ebx.getFirstRes());
     }
 
     /**
-     * 点击成本中心选择框
+     * 选择成本中心
+     * @param costCenter
      */
-    public void clickCostCenter() {
+    public void chooseCostCenter(String costCenter) {
         ebx.click(ebx.getCostCenter());
+        ebx.sendKey(ebx.getDetailInput(), costCenter);
+        ebx.click(ebx.getFirstRes());
     }
+
 
     /**
      * 点击发票类型选择框

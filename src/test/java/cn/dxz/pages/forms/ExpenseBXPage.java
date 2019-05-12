@@ -1,10 +1,12 @@
 package cn.dxz.pages.forms;
 
 import cn.dxz.base.BasePage;
+import cn.dxz.base.Constants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.security.cert.X509Certificate;
 import java.util.logging.XMLFormatter;
 
 /**
@@ -35,41 +37,53 @@ public class ExpenseBXPage extends BasePage {
     @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/div/div[2]/div/div/div/input")
     private WebElement payTypeText;
 
-    //选择付款方式选择框
+    //选择付款方式搜索框
     @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/form/div/div/div[2]/div[8]/div/div/div/div[1]/span")
     private WebElement choosePayType;
 
-    //付款方式选择框第一个方式-银行转账
-    @FindBy(xpath = "/html/body/div[4]/ul/li/div[3]/a/div")
+    //搜索型下拉框的输入值（input type=search的）
+    @FindBy(xpath = Constants.SEARCHINPUT_PATH)
+    private WebElement searchInput;
+
+    //付款方式搜索结果
+    @FindBy(xpath = "//*[@id=\"ui-select-choices-row-1-0\"]/a/div/span")
     private WebElement firstType;
 
     //收款人选择框
     @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/form/div/div/div[2]/div[9]/div/div/div/div[1]/span")
     private WebElement payee;
 
-    //收款人选择框第二个
-    @FindBy(xpath = "/html/body/div[4]/ul/li/div[4]/a/div")
-    private WebElement secPayee;
+    //收款人搜索结果第1个
+    @FindBy(xpath = "//*[@id=\"ui-select-choices-row-3-0\"]/a/div")
+    private WebElement firstPayee;
 
     //添加明细按钮
     @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/form/div/div/div[2]/div[14]/div/mp-child-table/div/div[2]/a[1]")
     private WebElement addDetail;
 
-    //预算表选择框
+    //明细-预算表搜索框
     @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/form/mp-form-body/div[1]/div/div/div/div[1]/span")
     private WebElement budgetSheet;
 
-    //预算表选择框第一个
-    @FindBy(xpath = "/html/body/div[5]/ul/li/div[3]/a/div")
-    private WebElement firstSheet;
+    //明细-搜索框搜输入值
+    @FindBy(xpath = "/html/body/div[5]/input[1]")
+    private WebElement detailInput;
 
-    //预算项选择框
+    //明细-预算表搜索框搜索结果第1条
+    @FindBy(xpath = "//*[@id=\"ui-select-choices-row-5-0\"]/a/div")
+    private WebElement sheetFirstRes;
+
+    //明细-预算项搜索框
     @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/form/mp-form-body/div[2]/div/div/div/div[1]/span")
     private WebElement budgetItem;
 
-    //明细选择框下拉第一个选项
-    @FindBy(xpath = "/html/body/div[5]/ul/li/div[3]/a/div")
-    private WebElement firstChoice;
+    //明细-预算项搜索框搜索结果第1条
+    @FindBy(xpath = "ui-select-choices-row-inner")
+    private WebElement itemFirstRes;
+
+    //明细-搜索框搜索结果第1条
+    @FindBy(className = "ui-select-choices-row-inner")
+    private WebElement firstRes;
 
     //成本中心
     @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/form/mp-form-body/div[3]/div/div/div/div[1]/span")
@@ -143,16 +157,8 @@ public class ExpenseBXPage extends BasePage {
         return budgetSheet;
     }
 
-    public WebElement getFirstSheet() {
-        return firstSheet;
-    }
-
     public WebElement getBudgetItem() {
         return budgetItem;
-    }
-
-    public WebElement getFirstChoice() {
-        return firstChoice;
     }
 
     public WebElement getInvoiceType() {
@@ -191,7 +197,27 @@ public class ExpenseBXPage extends BasePage {
         return payee;
     }
 
-    public WebElement getSecPayee() {
-        return secPayee;
+    public WebElement getFirstPayee() {
+        return firstPayee;
+    }
+
+    public WebElement getSearchInput() {
+        return searchInput;
+    }
+
+    public WebElement getDetailInput() {
+        return detailInput;
+    }
+
+    public WebElement getSheetFirstRes() {
+        return sheetFirstRes;
+    }
+
+    public WebElement getItemFirstRes() {
+        return itemFirstRes;
+    }
+
+    public WebElement getFirstRes() {
+        return firstRes;
     }
 }

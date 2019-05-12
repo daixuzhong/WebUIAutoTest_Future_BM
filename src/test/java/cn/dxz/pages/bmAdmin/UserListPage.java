@@ -19,11 +19,11 @@ public class UserListPage extends BasePage {
     private WebElement queryText;
 
     //新建用户按钮
-    @FindBy(className = "btn btn-primary ng-scope")
+    @FindBy(xpath = "/html/body/div/div/ng-view/div/div[2]/div/div/div[3]/button[1]")
     private WebElement newUserBtn;
 
     //删除用户按钮
-    @FindBy(className = "btn btn-danger ng-scope")
+    @FindBy(xpath = "/html/body/div/div/ng-view/div/div[2]/div/div/div[3]/button[2]")
     private WebElement delUserBtn;
 
     //用户列表第一条的编辑按钮

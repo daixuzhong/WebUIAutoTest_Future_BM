@@ -46,7 +46,7 @@ public class SelectDriverUtil {
      *
      */
     private static WebDriver chrome() {
-        System.setProperty("webdriver.chrome.driver", "D:\\UIAutoTest\\drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         return driver;

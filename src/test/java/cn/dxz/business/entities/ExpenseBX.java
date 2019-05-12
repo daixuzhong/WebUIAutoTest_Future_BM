@@ -17,6 +17,61 @@ public class ExpenseBX {
     //应付金额
     private String amount;
 
+    //付款方式
+    private String payType;
+
+    //收款人
+    private String payee;
+
+    //明细-预算表
+    private String budgetSheet;
+
+    //明细-预算项
+    private String budgetItem;
+
+    //明细-成本中心
+    private String costCenter;
+
+    public String getBudgetSheet() {
+        return budgetSheet;
+    }
+
+    public void setBudgetSheet(String budgetSheet) {
+        this.budgetSheet = budgetSheet;
+    }
+
+    public String getBudgetItem() {
+        return budgetItem;
+    }
+
+    public void setBudgetItem(String budgetItem) {
+        this.budgetItem = budgetItem;
+    }
+
+    public String getCostCenter() {
+        return costCenter;
+    }
+
+    public void setCostCenter(String costCenter) {
+        this.costCenter = costCenter;
+    }
+
+    public String getPayee() {
+        return payee;
+    }
+
+    public void setPayee(String payee) {
+        this.payee = payee;
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
     public String getAmount() {
         return amount;
     }

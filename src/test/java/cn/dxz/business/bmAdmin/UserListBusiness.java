@@ -1,6 +1,9 @@
 package cn.dxz.business.bmAdmin;
 
 import cn.dxz.actions.bmAdmin.UserListAction;
+import cn.dxz.actions.bmAdmin.UserMesAction;
+import cn.dxz.business.entities.User;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -9,9 +12,11 @@ import org.openqa.selenium.WebDriver;
  */
 public class UserListBusiness {
     private UserListAction ula;
+    private UserMesAction uma;
 
     public UserListBusiness(WebDriver driver) {
         ula = new UserListAction(driver);
+        uma = new UserMesAction(driver);
     }
 
     /**
@@ -30,5 +35,31 @@ public class UserListBusiness {
         ula.clickQueryTextAndSendKey(text);
         //点击编辑
         ula.clickFirstEditBtn();
+    }
+
+    /**
+     * 创建用户
+     * @param user
+     */
+    public void createUser(User user) throws InterruptedException {
+        ula.clickNewBtn();
+        uma.sendKeyName(user.getName());
+        uma.sendKeyCode(user.getCode());
+//        uma.sendKeyMobile(user.getMobile());
+        if (StringUtils.isNotBlank(user.getPassword())) {
+            uma.sendKeyPassword(user.getPassword());
+        }
+        uma.sendDepartment(user.getDepartment());
+        Thread.sleep(1000);
+        uma.sendEnableDepartment(user.getEnableDepartment());
+        Thread.sleep(1000);
+        uma.sendCompany(user.getCompany());
+        Thread.sleep(1000);
+        if (StringUtils.isNotBlank(user.getUserGroup())) {
+            uma.sendUserGroup(user.getUserGroup());
+        }
+
+        uma.clickSaveBtn();
+
     }
 }

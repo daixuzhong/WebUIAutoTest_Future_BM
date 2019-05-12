@@ -30,7 +30,7 @@ public class HomePage extends BasePage {
     private WebElement allBudget_User;
 
     //上方导航栏-门户管理
-    @FindBy(partialLinkText = "BMAdmin")
+    @FindBy(linkText = "门户管理")
     private WebElement bmAdmin;
 
     public WebElement getLogOff() {

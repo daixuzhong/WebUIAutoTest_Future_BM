@@ -3,6 +3,8 @@ package cn.dxz.business;
 import cn.dxz.actions.LoginAction;
 import org.openqa.selenium.WebDriver;
 
+import javax.swing.*;
+
 /**
  * @author daixuzhong
  * @title: LoginBusiness
@@ -30,4 +32,15 @@ public class LoginBusiness {
         }
         la.clickLogin();
     }
+
+    /**
+     * 登录admin账号
+     */
+    public void loginAdmin() {
+        la.sendKeyUserName("admin");
+        la.sendKeyPassword("1");
+        la.clickLogin();
+    }
+
+
 }
