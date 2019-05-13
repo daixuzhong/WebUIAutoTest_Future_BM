@@ -1,9 +1,7 @@
-package cn.dxz.cases;
+package cn.dxz.testCase;
 
 import cn.dxz.base.CaseBase;
-import cn.dxz.base.Constants;
 import cn.dxz.business.LoginBusiness;
-import cn.dxz.utils.ProUtil;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Parameters;
@@ -34,6 +32,7 @@ public class LoginTest extends CaseBase {
         LoginBusiness page = new LoginBusiness(driver);
         //登录
         page.login(userName,password,false);
+
     }
 
 //    @Test(dependsOnMethods = {"getUrl"})

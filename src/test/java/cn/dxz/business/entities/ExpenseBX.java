@@ -32,6 +32,17 @@ public class ExpenseBX {
     //明细-成本中心
     private String costCenter;
 
+    //税率
+    private String taxRate;
+
+    public String getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(String taxRate) {
+        this.taxRate = taxRate;
+    }
+
     public String getBudgetSheet() {
         return budgetSheet;
     }

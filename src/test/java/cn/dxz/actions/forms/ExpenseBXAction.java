@@ -1,7 +1,11 @@
 package cn.dxz.actions.forms;
 
 import cn.dxz.pages.forms.ExpenseBXPage;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 /**
  * @author daixuzhong
@@ -130,6 +134,20 @@ public class ExpenseBXAction {
      */
     public void clickTaxRate() {
         ebx.click(ebx.getTaxRate());
+    }
+
+    /**
+     * 选择税率
+     * @param taxRate
+     */
+    public void chooseTaxRate(String taxRate) {
+        List<WebElement> taxList = ebx.getTaxList();
+        for (WebElement webElement : taxList) {
+            if (StringUtils.equals(webElement.getText(), taxRate)) {
+                ebx.click(webElement);
+                return;
+            }
+        }
     }
 
     /**

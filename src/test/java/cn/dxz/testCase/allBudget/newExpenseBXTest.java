@@ -1,4 +1,4 @@
-package cn.dxz.cases.allBudget;
+package cn.dxz.testCase.allBudget;
 
 import cn.dxz.base.CaseBase;
 import cn.dxz.business.AllBudgetBusiness;
@@ -6,9 +6,9 @@ import cn.dxz.business.HomeBusiness;
 import cn.dxz.business.LoginBusiness;
 import cn.dxz.business.entities.ExpenseBX;
 import cn.dxz.utils.ProUtil;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
  */
 public class newExpenseBXTest extends CaseBase {
 
-    private static Logger logger = LoggerFactory.getLogger(newExpenseBXTest.class);
+    private static Logger logger = LogManager.getLogger(newExpenseBXTest.class);
     //选择浏览器
     private WebDriver driver = initDriver("chrome");
 
@@ -57,23 +57,16 @@ public class newExpenseBXTest extends CaseBase {
             //填写费用报销单
             ExpenseBX param = new ExpenseBX();
             ProUtil proUtil = new ProUtil("allBudget/expenseBX.properties");
-            String title = proUtil.readFile("title");
-            String incident = proUtil.readFile( "incident");
-            String amount = proUtil.readFile("amount");
-            String payType = proUtil.readFile( "payType");
-            String payee = proUtil.readFile( "payee");
-            String budgetSheet = proUtil.readFile("budgetSheet");
-            String budgetItem = proUtil.readFile("budgetItem");
-            String costCenter = proUtil.readFile("costCenter");
 
-            param.setTitle(title);
-            param.setIncident(incident);
-            param.setAmount(amount);
-            param.setPayType(payType);
-            param.setPayee(payee);
-            param.setBudgetSheet(budgetSheet);
-            param.setBudgetItem(budgetItem);
-            param.setCostCenter(costCenter);
+            param.setTitle(proUtil.readFile("title"));
+            param.setIncident(proUtil.readFile( "incident"));
+            param.setAmount(proUtil.readFile("amount"));
+            param.setPayType(proUtil.readFile( "payType"));
+            param.setPayee(proUtil.readFile( "payee"));
+            param.setBudgetSheet(proUtil.readFile("budgetSheet"));
+            param.setBudgetItem(proUtil.readFile("budgetItem"));
+            param.setCostCenter(proUtil.readFile("costCenter"));
+            param.setTaxRate(proUtil.readFile("taxRate"));
 
             abb.newExpenseBX(param);
 

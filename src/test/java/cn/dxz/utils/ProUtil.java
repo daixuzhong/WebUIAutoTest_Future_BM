@@ -1,8 +1,8 @@
 package cn.dxz.utils;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.Properties;
@@ -15,7 +15,7 @@ import java.util.Properties;
  */
 public class ProUtil {
 
-    private static Logger logger = LoggerFactory.getLogger(ProUtil.class);
+    private static Logger logger = LogManager.getLogger(ProUtil.class);
 
     private static String PATHROOT = "src/main/resources/";
 

@@ -59,8 +59,10 @@ public class AllBudgetBusiness {
         ebxa.clickSpecialsInvoice();
         ebxa.sendKeyPayableAmount(param.getAmount());
         ebxa.clickTaxRate();
-        ebxa.clickNoTax();
+        ebxa.chooseTaxRate(param.getTaxRate());
         ebxa.clickSaveDetailBtn();
+
+        Thread.sleep(1000);
 
         //提交
         ebxa.clickSubmitBtn();

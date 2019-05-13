@@ -1,4 +1,4 @@
-package cn.dxz.cases.bmAdmin;
+package cn.dxz.testCase.bmAdmin;
 
 import cn.dxz.base.CaseBase;
 import cn.dxz.business.LoginBusiness;

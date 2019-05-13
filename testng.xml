@@ -5,7 +5,7 @@
 <!--        <parameter name="userName" value="admin" />-->
 <!--        <parameter name="password" value="1" />-->
         <packages>
-            <package name="cn.dxz.cases.allBudget"></package>
+            <package name="cn.dxz.testCase.allBudget"></package>
         </packages>
 <!--        <classes>-->
 <!--            <class name="cn.dxz.cases.LoginTest"></class>-->

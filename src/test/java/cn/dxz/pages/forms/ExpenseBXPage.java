@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.security.cert.X509Certificate;
+import java.util.List;
 import java.util.logging.XMLFormatter;
 
 /**
@@ -109,8 +110,13 @@ public class ExpenseBXPage extends BasePage {
     @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/form/mp-form-body/div[7]/div/select/option[1]")
     private WebElement noTax;
 
+    //税率列表
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[2]/form/mp-form-body/div[7]/div/select/option")
+    private List<WebElement> taxList;
+
+
     //明细-确定
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[3]/div/button[1]")
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[4]/div/button[1]")
     private WebElement saveDetailBtn;
 
     //提交单据
@@ -219,5 +225,9 @@ public class ExpenseBXPage extends BasePage {
 
     public WebElement getFirstRes() {
         return firstRes;
+    }
+
+    public List<WebElement> getTaxList() {
+        return taxList;
     }
 }
