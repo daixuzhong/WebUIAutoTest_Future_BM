@@ -2,8 +2,12 @@ package cn.dxz.actions.forms;
 
 import cn.dxz.pages.forms.ExpenseBXPage;
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -14,6 +18,8 @@ import java.util.List;
  * @date 2019/5/10
  */
 public class ExpenseBXAction {
+
+    private static Logger logger = LoggerFactory.getLogger(ExpenseBXAction.class);
 
     public WebDriver driver;
     ExpenseBXPage ebx;
@@ -43,11 +49,14 @@ public class ExpenseBXAction {
      * 点击付款方式选择框输入付款方式并选择
      * @param key
      */
-    public void choosePayType(String key) {
+    public void choosePayType(String key) throws InterruptedException {
         //点击搜索框
         ebx.click(ebx.getChoosePayType());
         ebx.sendKey(ebx.getSearchInput(), key);
-        ebx.click(ebx.getFirstType());
+        Thread.sleep(1000);
+//        ebx.click(ebx.getFirstType());
+        //模拟回车
+        ebx.keyEnter();
     }
 
 
@@ -62,9 +71,10 @@ public class ExpenseBXAction {
      * 选择收款人
      * @param payee
      */
-    public void choosePayee(String payee) {
+    public void choosePayee(String payee) throws InterruptedException {
         clickPayee();
         ebx.sendKey(ebx.getSearchInput(), payee);
+        Thread.sleep(1000);
         ebx.click(ebx.getFirstPayee());
     }
 
@@ -165,10 +175,17 @@ public class ExpenseBXAction {
     }
 
     /**
-     * 点击保存
+     * 点击提交
      */
     public void clickSubmitBtn() {
         ebx.click(ebx.getSubmitBtn());
+    }
+
+    /**
+     * 点击保存
+     */
+    public void clickSaveBtn() {
+        ebx.click(ebx.getSaveBtn());
     }
 
     /**
@@ -177,5 +194,6 @@ public class ExpenseBXAction {
     public void clickLastSubBtn() {
         ebx.click(ebx.getLastSubBtn());
     }
+
 
 }

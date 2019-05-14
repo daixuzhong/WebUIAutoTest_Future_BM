@@ -23,7 +23,7 @@ public class newExpenseBXTest extends CaseBase {
 
     private static Logger logger = LogManager.getLogger(newExpenseBXTest.class);
     //选择浏览器
-    private WebDriver driver = initDriver("chrome");
+    private WebDriver driver = initDriver("ie");
 
     @BeforeTest
     public void login() {
@@ -72,7 +72,7 @@ public class newExpenseBXTest extends CaseBase {
 
             Thread.sleep(5000);
         } catch (InterruptedException e) {
-            logger.error("");
+            logger.error("提交费用报销失败" + e);
             e.printStackTrace();
         }
 

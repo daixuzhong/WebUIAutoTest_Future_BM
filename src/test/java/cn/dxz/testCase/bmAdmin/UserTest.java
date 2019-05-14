@@ -8,6 +8,8 @@ import cn.dxz.business.entities.User;
 import cn.dxz.utils.ProUtil;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
@@ -16,20 +18,24 @@ import org.testng.annotations.Test;
  * @description: TODO
  * @date 2019/5/9
  */
-public class CreateUserTest extends CaseBase {
+public class UserTest extends CaseBase {
 
     //选择浏览器
     private WebDriver driver = initDriver("chrome");
 
-    @Test
-    public void sysAdmin() {
+    @BeforeSuite
+    public void login() {
         driver.get("http://47.100.40.166:8020/ZT/Account/Login?ReturnUrl=%2fZT%2f");
         LoginBusiness lb = new LoginBusiness(driver);
         lb.loginAdmin();
 
         BMAdminBusiness bmb = new BMAdminBusiness(driver);
         bmb.enterUserList();
-        UserListBusiness ulb = new UserListBusiness(driver);
+
+    }
+
+    @Test
+    public void sysAdmin() {
 
         //创建用户参数
         ProUtil proUtil = new ProUtil("bmAdmin/createUser.properties");
@@ -47,6 +53,7 @@ public class CreateUserTest extends CaseBase {
         user.setCompany(company);
 
         try {
+            UserListBusiness ulb = new UserListBusiness(driver);
             ulb.createUser(user);
         } catch (InterruptedException e) {
 

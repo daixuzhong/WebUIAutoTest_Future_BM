@@ -21,8 +21,23 @@ public class BMAdminBusiness {
      * 进入用户列表
      */
     public void enterUserList() {
+        enterUserAdmin();
+        bma.clickUserList();
+    }
+
+    /**
+     * 进入用户组管理
+     */
+    public void enterUserGroup() {
+        enterUserAdmin();
+        bma.clickUserGroup();
+    }
+
+    /**
+     * 进入用户管理
+     */
+    private void enterUserAdmin() {
         ha.clickBMAdmin();
         bma.clickUserAdmin();
-        bma.clickUserList();
     }
 }

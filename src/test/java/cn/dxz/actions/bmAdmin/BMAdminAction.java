@@ -31,6 +31,13 @@ public class BMAdminAction {
         bap.click(bap.getUserList());
     }
 
+    /**
+     * 点击用户组管理
+     */
+    public void clickUserGroup() {
+        bap.click(bap.getUserGroup());
+    }
+
 
 
 }

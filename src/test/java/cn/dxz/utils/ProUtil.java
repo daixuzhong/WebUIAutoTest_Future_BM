@@ -47,6 +47,7 @@ public class ProUtil {
             e.printStackTrace();
         } catch (IOException e) {
             logger.error("读取文件失败");
+            logger.error("filePath=" + path);
             e.printStackTrace();
         }
         return null;

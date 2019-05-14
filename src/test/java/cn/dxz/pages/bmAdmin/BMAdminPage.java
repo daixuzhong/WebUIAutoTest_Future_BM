@@ -27,6 +27,17 @@ public class BMAdminPage extends BasePage {
     })
     private WebElement userList;
 
+    //用户管理-用户组管理
+    @FindBys({
+        @FindBy(id = "collapse2"),
+        @FindBy(linkText = "用户组管理")
+    })
+    private WebElement userGroup;
+
+    public WebElement getUserGroup() {
+        return userGroup;
+    }
+
     public WebElement getUserAdmin() {
         return userAdmin;
     }

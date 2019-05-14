@@ -32,7 +32,7 @@ public class SelectDriverUtil {
      *
      */
     private static WebDriver ie() {
-        System.setProperty("webdriver.ie.driver", "D:\\UIAutoTest\\drivers\\iedriver.exe");
+        System.setProperty("webdriver.ie.driver", "D:\\BMAutoTest\\drivers\\iedriver.exe");
 //        // 关闭IE保护模式
 //        DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
 //        ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
@@ -46,7 +46,7 @@ public class SelectDriverUtil {
      *
      */
     private static WebDriver chrome() {
-        System.setProperty("webdriver.chrome.driver", "D:\\UIAutoTest\\drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\BMAutoTest\\drivers\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         return driver;

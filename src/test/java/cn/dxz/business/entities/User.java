@@ -6,31 +6,31 @@ package cn.dxz.business.entities;
  */
 public class User  {
 
-    //名称输入框
+    //名称
     private String name;
 
-    //代码输入框
+    //代码
     private String code;
 
-    //别名输入框
+    //别名
     private String name1;
 
-    //描述输入框
+    //描述
     private String description;
 
-    //电子信箱输入框
+    //电子信箱
     private String email;
 
-    //密码输入框
+    //密码
     private String password;
 
-    //所属部门搜索框
+    //所属部门
     private String department;
 
     //可用部门
     private String enableDepartment;
 
-    //所属公司搜索框
+    //所属公司
     private String company;
 
     //手机号码

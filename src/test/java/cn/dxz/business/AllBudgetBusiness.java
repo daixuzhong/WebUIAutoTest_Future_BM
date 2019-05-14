@@ -42,6 +42,7 @@ public class AllBudgetBusiness {
         ebxa.sendKeyIncident(param.getIncident());
         //选择付款方式
         ebxa.choosePayType(param.getPayType());
+        Thread.sleep(1000);
         //选择收款人
         ebxa.choosePayee(param.getPayee());
 
@@ -62,11 +63,11 @@ public class AllBudgetBusiness {
         ebxa.chooseTaxRate(param.getTaxRate());
         ebxa.clickSaveDetailBtn();
 
-        Thread.sleep(1000);
-
         //提交
         ebxa.clickSubmitBtn();
+//        ebxa.clickSaveBtn();
         ebxa.clickLastSubBtn();
+
 
 
 

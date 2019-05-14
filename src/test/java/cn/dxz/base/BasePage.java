@@ -1,9 +1,11 @@
 package cn.dxz.base;
 
 import cn.dxz.utils.SelectDriverUtil;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -113,7 +115,20 @@ public class BasePage {
         }
     }
 
+    /**
+     * 模拟键盘-回车
+     */
+    public void keyEnter() {
+        Actions action = new Actions(driver);
+        action .sendKeys(Keys.ENTER).perform();
+    }
 
-
+    /**
+     * 模拟键盘-F5刷新
+     */
+    public void keyF5Refresh() {
+        Actions action = new Actions(driver);
+        action .sendKeys(Keys.F5).perform();
+    }
 
 }

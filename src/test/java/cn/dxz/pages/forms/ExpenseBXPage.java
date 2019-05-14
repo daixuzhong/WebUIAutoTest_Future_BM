@@ -2,9 +2,13 @@ package cn.dxz.pages.forms;
 
 import cn.dxz.base.BasePage;
 import cn.dxz.base.Constants;
+import cn.dxz.business.entities.ExpenseBX;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.cert.X509Certificate;
 import java.util.List;
@@ -17,6 +21,8 @@ import java.util.logging.XMLFormatter;
  * @date 2019/5/10
  */
 public class ExpenseBXPage extends BasePage {
+
+    private static Logger logger = LoggerFactory.getLogger(ExpenseBXPage.class);
 
     public ExpenseBXPage(WebDriver driver) {
         super(driver);
@@ -47,7 +53,7 @@ public class ExpenseBXPage extends BasePage {
     private WebElement searchInput;
 
     //付款方式搜索结果
-    @FindBy(xpath = "//*[@id=\"ui-select-choices-row-1-0\"]/a/div/span")
+    @FindBy(xpath = "//*[@id=\"ui-select-choices-row-7-0\"]/a/div/span")
     private WebElement firstType;
 
     //收款人选择框
@@ -119,9 +125,17 @@ public class ExpenseBXPage extends BasePage {
     @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[4]/div/button[1]")
     private WebElement saveDetailBtn;
 
+    //提交、保存、流程图、关闭按钮组
+    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[2]/button")
+    private List<WebElement> btnList;
+
     //提交单据
-    @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[2]/button[1]")
+    @FindBy(className = "btn-danger")
     private WebElement submitBtn;
+
+    //保存单据
+    @FindBy(xpath = "btn-primary")
+    private WebElement saveBtn;
 
     //确定提交此单据审批
     @FindBy(xpath = "/html/body/div[1]/div/div/div[3]/button[1]")
@@ -229,5 +243,13 @@ public class ExpenseBXPage extends BasePage {
 
     public List<WebElement> getTaxList() {
         return taxList;
+    }
+
+    public WebElement getSaveBtn() {
+        return saveBtn;
+    }
+
+    public List<WebElement> getBtnList() {
+        return btnList;
     }
 }
