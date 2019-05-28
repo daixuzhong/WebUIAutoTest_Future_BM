@@ -141,6 +141,14 @@ public class ExpenseBXPage extends BasePage {
     @FindBy(xpath = "/html/body/div[1]/div/div/div[3]/button[1]")
     private WebElement lastSubBtn;
 
+    //提交成功弹框提示
+    @FindBy(partialLinkText = "更新成功")
+    private WebElement successFlag;
+
+    public WebElement getSuccessFlag() {
+        return successFlag;
+    }
+
     public WebElement getLastSubBtn() {
         return lastSubBtn;
     }

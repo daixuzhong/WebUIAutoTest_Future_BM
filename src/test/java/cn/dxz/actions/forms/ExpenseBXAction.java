@@ -90,9 +90,10 @@ public class ExpenseBXAction {
      * 选择预算表
      * @param budgetSheet
      */
-    public void chooseBudgetSheet(String budgetSheet) {
+    public void chooseBudgetSheet(String budgetSheet) throws InterruptedException {
         ebx.click(ebx.getBudgetSheet());
         ebx.sendKey(ebx.getDetailInput(), budgetSheet);
+        Thread.sleep(1000);
         ebx.click(ebx.getFirstRes());
     }
 
@@ -100,9 +101,10 @@ public class ExpenseBXAction {
      * 选择预算项
      * @param budgetItem
      */
-    public void chooseBudgetItem(String budgetItem) {
+    public void chooseBudgetItem(String budgetItem) throws InterruptedException {
         ebx.click(ebx.getBudgetItem());
         ebx.sendKey(ebx.getDetailInput(), budgetItem);
+        Thread.sleep(1000);
         ebx.click(ebx.getFirstRes());
     }
 
@@ -110,9 +112,10 @@ public class ExpenseBXAction {
      * 选择成本中心
      * @param costCenter
      */
-    public void chooseCostCenter(String costCenter) {
+    public void chooseCostCenter(String costCenter) throws InterruptedException {
         ebx.click(ebx.getCostCenter());
         ebx.sendKey(ebx.getDetailInput(), costCenter);
+        Thread.sleep(1000);
         ebx.click(ebx.getFirstRes());
     }
 
@@ -150,8 +153,9 @@ public class ExpenseBXAction {
      * 选择税率
      * @param taxRate
      */
-    public void chooseTaxRate(String taxRate) {
+    public void chooseTaxRate(String taxRate) throws InterruptedException {
         List<WebElement> taxList = ebx.getTaxList();
+        Thread.sleep(1000);
         for (WebElement webElement : taxList) {
             if (StringUtils.equals(webElement.getText(), taxRate)) {
                 ebx.click(webElement);
@@ -194,6 +198,16 @@ public class ExpenseBXAction {
     public void clickLastSubBtn() {
         ebx.click(ebx.getLastSubBtn());
     }
+
+    /**
+     * 提交成功的弹框是否出现
+     * @return
+     */
+    public boolean isSuccess() {
+        return ebx.assertElementExist(ebx.getSuccessFlag());
+    }
+
+
 
 
 }

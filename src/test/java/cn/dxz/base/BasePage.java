@@ -123,12 +123,5 @@ public class BasePage {
         action .sendKeys(Keys.ENTER).perform();
     }
 
-    /**
-     * 模拟键盘-F5刷新
-     */
-    public void keyF5Refresh() {
-        Actions action = new Actions(driver);
-        action .sendKeys(Keys.F5).perform();
-    }
 
 }

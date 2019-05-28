@@ -2,13 +2,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="FutureBM_AutoTest">
     <test name="systemAdminTest">
-<!--        <parameter name="userName" value="admin" />-->
-<!--        <parameter name="password" value="1" />-->
+
         <packages>
-            <package name="cn.dxz.testCase.allBudget"></package>
+            <package name="cn.dxz.testCase.allBudget.expenseBXFlow"></package>
         </packages>
 <!--        <classes>-->
-<!--            <class name="cn.dxz.cases.LoginTest"></class>-->
+<!--            <class name="cn.dxz.testCase.allBudget.newExpenseBXTest">-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="checkBX"></include>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--            </class>-->
 <!--        </classes>-->
+
     </test>
 </suite>

@@ -1,7 +1,12 @@
 package cn.dxz.actions.bmAdmin;
 
 import cn.dxz.pages.bmAdmin.UserListPage;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import java.util.List;
 
 /**
  * @author daixuzhong
@@ -29,6 +34,7 @@ public class UserListAction {
     public void clickQueryTextAndSendKey(String text) {
         ulp.click(ulp.getQueryText());
         ulp.sendKey(ulp.getQueryText(), text);
+        ulp.keyEnter();
     }
 
     /**
@@ -38,8 +44,19 @@ public class UserListAction {
         ulp.click(ulp.getEditBtn1());
     }
 
-
-    public void wirteUserMes() {
-
+    /**
+     * 创建用户断言
+     * @param key
+     */
+    public void assertCreateUser(String key) {
+        boolean flag = false;
+        clickQueryTextAndSendKey(key);
+        List<WebElement> nameInList = ulp.getNameInList();
+        for (WebElement element : nameInList) {
+            if (StringUtils.equals(element.getText(), key)) {
+                flag = true;
+            }
+        }
+        Assert.assertTrue(false, "添加用户失败");
     }
 }

@@ -27,17 +27,6 @@ public class UserListBusiness {
     }
 
     /**
-     * 搜索用户并对其进行编辑
-     * @param text
-     */
-    public void editUser(String text) {
-        //点击查询并输入查询条件
-        ula.clickQueryTextAndSendKey(text);
-        //点击编辑
-        ula.clickFirstEditBtn();
-    }
-
-    /**
      * 创建用户
      * @param user
      */
@@ -61,5 +50,26 @@ public class UserListBusiness {
 
         uma.clickSaveBtn();
 
+        //断言
+        ula.assertCreateUser(user.getName());
     }
+
+
+    /**
+     * 搜索用户并对其进行编辑
+     * @param text
+     */
+    public void editUser(String text) {
+        //点击查询并输入查询条件
+        ula.clickQueryTextAndSendKey(text);
+        //点击编辑
+        ula.clickFirstEditBtn();
+        //修改姓名
+        uma.sendKeyName(text);
+        uma.clickSaveBtn();
+
+        //断言校验
+
+    }
+
 }
