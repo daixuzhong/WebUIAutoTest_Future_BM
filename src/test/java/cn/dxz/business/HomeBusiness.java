@@ -1,6 +1,7 @@
 package cn.dxz.business;
 
 import cn.dxz.actions.HomeAction;
+import cn.dxz.base.Constants;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -24,16 +25,34 @@ public class HomeBusiness {
     }
 
     /**
-     * 进入全面预算页（用户）
+     * 进入全面预算页
      */
-    public void enterAllBudget() {
-        ha.clickAllBudget();
+    public void enterBudgetBM() throws InterruptedException {
+        ha.clickTopbar(Constants.BUDGET_BM);
+        Thread.sleep(2000);
     }
 
     /**
-     * 进入门户管理（后台）
+     * 进入门户管理
      */
     public void enterBMAdmin() {
-        ha.clickBMAdmin();
+        ha.clickTopbar(Constants.BM_ADMIN);
+    }
+
+    /**
+     * 进入我的任务管理
+     */
+    public void enterMyTask() throws InterruptedException {
+        ha.clickMyTask();
+        Thread.sleep(1000);
+        ha.clickSeeMoreTask();
+        Thread.sleep(1000);
+    }
+
+    /**
+     * 注销
+     */
+    public void logOff() {
+        ha.clickLogOff();
     }
 }

@@ -1,7 +1,11 @@
 package cn.dxz.actions;
 
 import cn.dxz.pages.HomePage;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 /**
  * @author daixuzhong
@@ -18,10 +22,16 @@ public class HomeAction {
         hp = new HomePage(driver);
     }
     /**
-     * 点击全面预算
+     * 点击上方导航栏按钮（全面预算、系统管理、门户管理）
      */
-    public void clickAllBudget() {
-        hp.click(hp.getAllBudget_User());
+    public void clickTopbar(String barName) {
+        List<WebElement> topbar = hp.getTopbar();
+        for (WebElement e : topbar) {
+            if (StringUtils.equals(e.getText(), barName)) {
+                hp.click(e);
+                break;
+            }
+        }
     }
 
     /**
@@ -31,10 +41,25 @@ public class HomeAction {
         return hp.assertElementExist(hp.getLogOff());
     }
 
-    //点击门户管理
-    public void clickBMAdmin() {
-        hp.click(hp.getBmAdmin());
+    /**
+     * 点击注销按钮
+     */
+    public void clickLogOff() {
+        hp.click(hp.getLogOff());
     }
 
+    /**
+     * 点击我的任务
+     */
+    public void clickMyTask() {
+        hp.click(hp.getMyTask());
+    }
+
+    /**
+     * 查看更多任务
+     */
+    public void clickSeeMoreTask() {
+        hp.click(hp.getSeeMoreTask());
+    }
 
 }

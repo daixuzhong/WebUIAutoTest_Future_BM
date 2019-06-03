@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="FutureBM_AutoTest">
-    <test name="systemAdminTest">
-
-        <packages>
-            <package name="cn.dxz.testCase.allBudget.expenseBXFlow"></package>
-        </packages>
-<!--        <classes>-->
-<!--            <class name="cn.dxz.testCase.allBudget.newExpenseBXTest">-->
-<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="checkBX"></include>&ndash;&gt;-->
-<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
-<!--            </class>-->
-<!--        </classes>-->
-
+<suite name="FutureBM_AutoTest" preserve-order="true">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    <test name="expenseBX_flow" preserve-order="true">
+        <classes>
+            <class name="cn.dxz.testCase.flowCenter.NewExpenseBXTest"></class>
+            <class name="cn.dxz.testCase.flowCenter.WorkflowTaskTest"></class>
+        </classes>
     </test>
+
 </suite>

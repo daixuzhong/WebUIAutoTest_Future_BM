@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class CaseBase {
 
-    public WebDriver initDriver(String browserName) {
+    public static WebDriver initDriver(String browserName) {
         WebDriver driver = SelectDriverUtil.driverName(browserName);
         driver.manage().window().maximize();
         return driver;

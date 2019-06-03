@@ -1,10 +1,8 @@
 package cn.dxz.base;
 
+import cn.dxz.utils.ScrollBarUtil;
 import cn.dxz.utils.SelectDriverUtil;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -23,7 +21,7 @@ import java.util.Set;
 public class BasePage {
     private WebDriver driver;
     //最大超时时间，单位：秒
-    private final int timeOut = 5;
+    private final int timeOut = 10;
 
     public BasePage(WebDriver driver){
         this.driver=driver;
@@ -121,6 +119,24 @@ public class BasePage {
     public void keyEnter() {
         Actions action = new Actions(driver);
         action .sendKeys(Keys.ENTER).perform();
+    }
+
+
+    /**
+     * 层级定位
+     * @param element
+     * @param by
+     * @return
+     */
+    public WebElement nodeElement(WebElement element, By by){
+        return element.findElement(by);
+    }
+
+    /**
+     * 浏览器滚动条托到底部
+     */
+    public void scrolltoBottom() {
+        ScrollBarUtil.scrolltoBottom(driver);
     }
 
 

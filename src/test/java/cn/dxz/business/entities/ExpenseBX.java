@@ -106,4 +106,15 @@ public class ExpenseBX {
     public void setIncident(String incident) {
         this.incident = incident;
     }
+
+    //发票类型
+    private String invoiceType;
+
+    public String getInvoiceType() {
+        return invoiceType;
+    }
+
+    public void setInvoiceType(String invoiceType) {
+        this.invoiceType = invoiceType;
+    }
 }

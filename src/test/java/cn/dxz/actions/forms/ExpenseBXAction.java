@@ -1,11 +1,9 @@
 package cn.dxz.actions.forms;
 
-import cn.dxz.pages.forms.ExpenseBXPage;
-import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.Keys;
+import cn.dxz.pages.flowCenter.forms.ExpenseBXPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +12,7 @@ import java.util.List;
 /**
  * @author daixuzhong
  * @title: ExpenseBXAction
- * @description: TODO
+ * @description: 费用报销单填报操作
  * @date 2019/5/10
  */
 public class ExpenseBXAction {
@@ -46,44 +44,40 @@ public class ExpenseBXAction {
     }
 
     /**
-     * 点击付款方式选择框输入付款方式并选择
-     * @param key
+     * 点击付款方式并选择
+     * @param payType
      */
-    public void choosePayType(String key) throws InterruptedException {
+    public void choosePayType(String payType) throws Exception {
         //点击搜索框
-        ebx.click(ebx.getChoosePayType());
-        ebx.sendKey(ebx.getSearchInput(), key);
+        ebx.click(ebx.getQueryPayType());
         Thread.sleep(1000);
-//        ebx.click(ebx.getFirstType());
-        //模拟回车
-        ebx.keyEnter();
+        ebx.sendKey(ebx.getQueryPayTypeText(), payType);
+        Thread.sleep(1000);
+        ebx.click(ebx.getPayTypeRes());
     }
 
 
-    /**
-     * 点击收款人
-     */
-    public void clickPayee() {
-        ebx.click(ebx.getPayee());
-    }
 
     /**
-     * 选择收款人
+     * 点击收款人并选择
      * @param payee
      */
     public void choosePayee(String payee) throws InterruptedException {
-        clickPayee();
-        ebx.sendKey(ebx.getSearchInput(), payee);
+        ebx.click(ebx.getQueryPayee());
         Thread.sleep(1000);
-        ebx.click(ebx.getFirstPayee());
+        ebx.sendKey(ebx.getQueryPayeeText(), payee);
+        Thread.sleep(1000);
+        ebx.click(ebx.getPayeeRes());
     }
 
 
     /**
-     * 点击添加明细
+     * 点击添加明细按钮(1添加、2删除、3取消删除)
      */
-    public void clickAddDetail() {
-        ebx.click(ebx.getAddDetail());
+    public void clickAddDetail(int index) {
+        //list下标从0开始
+        List<WebElement> payDetailBtn = ebx.getPayDetailBtn();
+        ebx.click(ebx.getPayDetailBtn().get(index - 1));
     }
 
     /**
@@ -91,10 +85,12 @@ public class ExpenseBXAction {
      * @param budgetSheet
      */
     public void chooseBudgetSheet(String budgetSheet) throws InterruptedException {
-        ebx.click(ebx.getBudgetSheet());
-        ebx.sendKey(ebx.getDetailInput(), budgetSheet);
+        ebx.click(ebx.getQueryBudgetSheet());
         Thread.sleep(1000);
-        ebx.click(ebx.getFirstRes());
+        ebx.sendKey(ebx.getQueryBudgetSheetText(), budgetSheet);
+        Thread.sleep(1000);
+        ebx.click(ebx.getBudgetSheetRes());
+
     }
 
     /**
@@ -102,10 +98,12 @@ public class ExpenseBXAction {
      * @param budgetItem
      */
     public void chooseBudgetItem(String budgetItem) throws InterruptedException {
-        ebx.click(ebx.getBudgetItem());
-        ebx.sendKey(ebx.getDetailInput(), budgetItem);
+        ebx.click(ebx.getQueryBudgetItem());
         Thread.sleep(1000);
-        ebx.click(ebx.getFirstRes());
+        ebx.sendKey(ebx.getQueryBudgetItemText(), budgetItem);
+        Thread.sleep(1000);
+        ebx.click(ebx.getBudgetItemRes());
+
     }
 
     /**
@@ -113,26 +111,25 @@ public class ExpenseBXAction {
      * @param costCenter
      */
     public void chooseCostCenter(String costCenter) throws InterruptedException {
-        ebx.click(ebx.getCostCenter());
-        ebx.sendKey(ebx.getDetailInput(), costCenter);
+        ebx.click(ebx.getQueryCostCenter());
         Thread.sleep(1000);
-        ebx.click(ebx.getFirstRes());
+        ebx.sendKey(ebx.getQueryCostCenterText(), costCenter);
+        Thread.sleep(1000);
+        ebx.click(ebx.getCostCenterRes());
+
+
     }
 
 
     /**
      * 点击发票类型选择框
+     * @param invoiceType
      */
-    public void clickInvoiceType() {
-        ebx.click(ebx.getInvoiceType());
+    public void clickInvoiceType(String invoiceType) {
+        Select select = new Select(ebx.getInvoiceType());
+        select.selectByVisibleText(invoiceType);
     }
 
-    /**
-     * 点击发票类型选择框第一栏-专票
-     */
-    public void clickSpecialsInvoice() {
-        ebx.click(ebx.getSpecialsInvoice());
-    }
 
     /**
      * 输入应付金额
@@ -143,32 +140,13 @@ public class ExpenseBXAction {
     }
 
     /**
-     * 点击税率选择框
-     */
-    public void clickTaxRate() {
-        ebx.click(ebx.getTaxRate());
-    }
-
-    /**
      * 选择税率
      * @param taxRate
      */
-    public void chooseTaxRate(String taxRate) throws InterruptedException {
-        List<WebElement> taxList = ebx.getTaxList();
-        Thread.sleep(1000);
-        for (WebElement webElement : taxList) {
-            if (StringUtils.equals(webElement.getText(), taxRate)) {
-                ebx.click(webElement);
-                return;
-            }
-        }
-    }
+    public void clickTaxRate(String taxRate) {
+        Select select = new Select(ebx.getTaxRate());
+        select.selectByVisibleText(taxRate);
 
-    /**
-     * 选择税率第一项无税
-     */
-    public void clickNoTax() {
-        ebx.click(ebx.getNoTax());
     }
 
     /**
@@ -179,24 +157,18 @@ public class ExpenseBXAction {
     }
 
     /**
-     * 点击提交
+     * 点击按钮组中的按钮（1提交、2保存、3流程图、4关闭）
      */
-    public void clickSubmitBtn() {
-        ebx.click(ebx.getSubmitBtn());
-    }
-
-    /**
-     * 点击保存
-     */
-    public void clickSaveBtn() {
-        ebx.click(ebx.getSaveBtn());
+    public void clickSubmitBtn(int index) {
+        List<WebElement> btnList = ebx.getBtnList();
+        ebx.click(btnList.get(index - 1));
     }
 
     /**
      * 确认提交该单据审批
      */
-    public void clickLastSubBtn() {
-        ebx.click(ebx.getLastSubBtn());
+    public void clickConfirmSubmit() {
+        ebx.click(ebx.getConfirmSubmit());
     }
 
     /**

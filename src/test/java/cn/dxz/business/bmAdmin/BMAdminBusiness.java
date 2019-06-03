@@ -2,6 +2,7 @@ package cn.dxz.business.bmAdmin;
 
 import cn.dxz.actions.HomeAction;
 import cn.dxz.actions.bmAdmin.BMAdminAction;
+import cn.dxz.base.Constants;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -37,7 +38,7 @@ public class BMAdminBusiness {
      * 进入用户管理
      */
     private void enterUserAdmin() {
-        ha.clickBMAdmin();
+        ha.clickTopbar(Constants.BM_ADMIN);
         bma.clickUserAdmin();
     }
 }

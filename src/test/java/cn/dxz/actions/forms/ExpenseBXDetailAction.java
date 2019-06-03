@@ -1,8 +1,9 @@
 package cn.dxz.actions.forms;
 
 import cn.dxz.base.Constants;
-import cn.dxz.pages.forms.ExpenseBXDetailPage;
-import org.apache.commons.lang3.StringUtils;
+import cn.dxz.business.entities.ExpenseBX;
+import cn.dxz.pages.flowCenter.forms.ExpenseBXDetailPage;
+import cn.dxz.utils.NumberFormatUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -10,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.util.List;
-import java.util.SplittableRandom;
 
 /**
  * @author daixuzhong
@@ -72,55 +72,37 @@ public class ExpenseBXDetailAction {
     }
 
     /**
-     * 校验金额
-     * @param amount
+     * 校验付款明细里的各项内容
+     * @param expenseBX
      */
-    public void checkAmount(String amount) {
-        logger.debug(ebxdp.getAmount().getText());
-        logger.debug(amount);
-        Assert.assertEquals(ebxdp.getAmount().getText(), amount);
+    public void checkPaymentDetail(ExpenseBX expenseBX) {
+        List<WebElement> detailList = ebxdp.getDetailList();
+        List<WebElement> detailNumberList = ebxdp.getDetailNumberList();
+        //校验预算表
+        Assert.assertEquals(detailList.get(Constants.Numbers.ONE.getCode()).getText(), expenseBX.getBudgetSheet());
+        //校验预算项
+        Assert.assertEquals(detailList.get(Constants.Numbers.TWO.getCode()).getText(), expenseBX.getBudgetItem());
+        //校验成本中心
+        Assert.assertEquals(detailList.get(Constants.Numbers.THREE.getCode()).getText(), expenseBX.getCostCenter());
+        //校验发票类型
+        Assert.assertEquals(detailList.get(Constants.Numbers.FOUR.getCode()).getText(), expenseBX.getInvoiceType());
+        //校验应付金额
+        String amount = NumberFormatUtil.format(detailNumberList.get(Constants.Numbers.ZERO.getCode()).getText());
+        Assert.assertEquals(amount, expenseBX.getAmount());
+        //校验税率
+        Assert.assertEquals(detailList.get(Constants.Numbers.SEVEN.getCode()).getText(), expenseBX.getTaxRate());
+        /**
+         * 校验税额+不含税金额是否等于应付金额
+         */
+        //税额
+        String taxAmount = NumberFormatUtil.format(detailNumberList.get(Constants.Numbers.TWO.getCode()).getText());
+        //不含税金额
+        String unTaxAmount = NumberFormatUtil.format(detailNumberList.get(Constants.Numbers.THREE.getCode()).getText());
+        double res = Double.valueOf(taxAmount) + Double.valueOf(unTaxAmount);
+        Assert.assertEquals(NumberFormatUtil.format(res), amount);
+
     }
 
-
-    /**
-     * 校验预算表
-     * @param budgetSheet
-     */
-    public void checkBudgetSheet(String budgetSheet) {
-        Assert.assertEquals(ebxdp.getBudgetSheet().getText(), budgetSheet);
-    }
-
-    /**
-     * 校验预算项
-     * @param budgetItem
-     */
-    public void checkBudgetItem(String budgetItem) {
-        Assert.assertEquals(ebxdp.getBudgetItem().getText(), budgetItem);
-    }
-
-    /**
-     * 成本中心
-     * @param costCenter
-     */
-    public void checkCostCenter(String costCenter) {
-        Assert.assertEquals(ebxdp.getCostCenter().getText(), costCenter);
-    }
-
-    /**
-     * 校验发票类型
-     * @param invoiceType
-     */
-    public void checkInvoiceType(String invoiceType) {
-        Assert.assertEquals(ebxdp.getInvoiceType().getText(), invoiceType);
-    }
-
-    /**
-     * 校验税率
-     * @param taxRate
-     */
-    public void checkTaxRate(String taxRate) {
-        Assert.assertEquals(ebxdp.getTaxRate().getText(), taxRate);
-    }
 
     /**
      * 校验审批环节
@@ -186,18 +168,18 @@ public class ExpenseBXDetailAction {
     }
 
     /**
+     * 点击关闭
+     */
+    public void clickClose() {
+        ebxdp.click(ebxdp.getClose());
+    }
+
+    /**
      * 弹框-确定
      */
     public void clickConfirmInBox() {
         ebxdp.click(ebxdp.getConfirmBtn());
     }
 
-    /**
-     * 判断结果
-     */
-    public void assertRes() {
-        String msg = ebxdp.getHint().getText();
-        Assert.assertTrue(msg.contains(Constants.Status.SUCCESS.getText()), "~~~~~error~~~~~");
-    }
 
 }

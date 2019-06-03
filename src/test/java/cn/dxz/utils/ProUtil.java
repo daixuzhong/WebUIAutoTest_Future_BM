@@ -53,9 +53,20 @@ public class ProUtil {
         return null;
     }
 
-    public static void main(String[] args) {
-        String userName = new ProUtil("parameter.properties").readFile( "title");
-
-        System.out.println(userName);
+    /**
+     * 按,分割用户名密码
+     * exp：“admin,1”中逗号前是账号，逗号后是密码
+     *
+     * @param userInfo
+     * @return
+     */
+    public String[] formatUserInfo(String userInfo) {
+        return userInfo.split(",");
     }
+
+
+    public static void main(String[] args) {
+
+    }
+
 }

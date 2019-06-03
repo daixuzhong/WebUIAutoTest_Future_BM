@@ -1,17 +1,19 @@
-package cn.dxz.pages.allBudget;
+package cn.dxz.pages.flowCenter;
 
 import cn.dxz.base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 /**
  * @author daixuzhong
  * @title: AllBudgetPage
- * @description: 全面预算页面
+ * @description: 全面预算-预算执行页面
  * @date 2019/5/10
  */
-public class AllBudgetPage extends BasePage {
+public class BudgetExecutionPage extends BasePage {
 
     //预算执行
     @FindBy(partialLinkText = "预算执行")
@@ -29,11 +31,15 @@ public class AllBudgetPage extends BasePage {
     @FindBy(partialLinkText = "查询统计")
     private WebElement queryStatistics;
 
-    //我填报的单据
-    @FindBy(xpath = "//a[contains(@href, 'view/MyTicket')]")
-    private WebElement myWritedBill;
+    //查询统计下拉菜单
+    @FindBy(xpath = "//*[@id=\"nav_2284\"]/li/a")
+    private List<WebElement> queryStatisticsList;
 
-    //搜索条件选择按钮，默认为未提交（未提交，已提交，已完成）
+    //搜索查询输入框
+    @FindBy(xpath = "//input[@title=\"输入关键字后按ENTER键\"]")
+    private WebElement queryBillInput;
+
+    //搜索条件选择按钮组，默认为未提交（未提交，已提交，已完成）
     @FindBy(xpath = "/html/body/div/div/ng-view/div/div[2]/div/div/ng-include/div/button")
     private WebElement queryCondition;
 
@@ -45,9 +51,17 @@ public class AllBudgetPage extends BasePage {
     @FindBy(partialLinkText = "未提交")
     private WebElement uncommitted;
 
+    //搜索条件下拉框选择---已完成
+    @FindBy(partialLinkText = "已完成")
+    private WebElement finished;
+
     //我提交的单据列表第一条的编辑按钮
     @FindBy(xpath = "/html/body/div/div/ng-view/div/div[3]/div/table/tbody/tr[1]/td[2]/a")
     private WebElement editBtn1;
+
+    public BudgetExecutionPage(WebDriver driver) {
+        super(driver);
+    }
 
     public WebElement getEditBtn1() {
         return editBtn1;
@@ -55,10 +69,6 @@ public class AllBudgetPage extends BasePage {
 
     public WebElement getCommitted() {
         return committed;
-    }
-
-    public WebElement getMyWritedBill() {
-        return myWritedBill;
     }
 
     public WebElement getUncommitted() {
@@ -69,8 +79,8 @@ public class AllBudgetPage extends BasePage {
         return queryStatistics;
     }
 
-    public AllBudgetPage(WebDriver driver) {
-        super(driver);
+    public List<WebElement> getQueryStatisticsList() {
+        return queryStatisticsList;
     }
 
     public WebElement getExpenseBX() {
@@ -87,5 +97,13 @@ public class AllBudgetPage extends BasePage {
 
     public WebElement getQueryCondition() {
         return queryCondition;
+    }
+
+    public WebElement getFinished() {
+        return finished;
+    }
+
+    public WebElement getQueryBillInput() {
+        return queryBillInput;
     }
 }

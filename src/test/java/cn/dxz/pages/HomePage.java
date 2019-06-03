@@ -4,6 +4,9 @@ import cn.dxz.base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import sun.awt.windows.WEmbeddedFrame;
+
+import java.util.List;
 
 /**
  * @author daixuzhong
@@ -18,34 +21,34 @@ public class HomePage extends BasePage {
     }
 
     //注销按钮
-    @FindBy(xpath = "/html/body/header/ul/li[6]/a")
+    @FindBy(xpath = "//i[@class=\"ti-power-off\"]")
     private WebElement logOff;
 
-    //上方导航栏-系统管理
-    @FindBy(xpath = "/html/body/header/div[2]/ul/li[2]/a")
-    private WebElement systemAdmin;
-
-    //上方导航栏-全面预算(用户界面)
+    //上方导航栏按钮组（全面预算，系统管理，门户管理......）
     @FindBy(xpath = "//*[@id=\"dorpdownnav\"]/li/a")
-    private WebElement allBudget_User;
+    private List<WebElement> topbar;
 
-    //上方导航栏-门户管理
-    @FindBy(linkText = "门户管理")
-    private WebElement bmAdmin;
+    //右上角按钮-我的任务
+    @FindBy(xpath = "//a[@title=\"我的任务\"]")
+    private WebElement myTask;
+
+    //我的任务-查看更多
+    @FindBy(xpath = "//a[text()=\"查看更多\" and contains(@href, \"WorkflowTask\")]")
+    private WebElement seeMoreTask;
 
     public WebElement getLogOff() {
         return logOff;
     }
 
-    public WebElement getSystemAdmin() {
-        return systemAdmin;
+    public List<WebElement> getTopbar() {
+        return topbar;
     }
 
-    public WebElement getAllBudget_User() {
-        return allBudget_User;
+    public WebElement getMyTask() {
+        return myTask;
     }
 
-    public WebElement getBmAdmin() {
-        return bmAdmin;
+    public WebElement getSeeMoreTask() {
+        return seeMoreTask;
     }
 }
